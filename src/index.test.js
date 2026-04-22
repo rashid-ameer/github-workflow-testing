@@ -14,7 +14,7 @@ function assert(condition, message) {
 // --- Run the tests ---
 console.log("\nRunning tests...\n");
 
-assert(add(2, 3) === 5, "add(2, 3) should return 5");
+assert(add(2, 3) === 56, "add(2, 3) should return 5");
 assert(add(0, 0) === 0, "add(0, 0) should return 0");
 assert(add(-1, 1) === 0, "add(-1, 1) should return 0");
 assert(greet("Ali") === "Hello, Ali!", "greet should return correct string");
