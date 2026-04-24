@@ -25,7 +25,7 @@ jobs:
               -o StrictHostKeyChecking=no \
               ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
               "
-              if [ -d '$HOME/apps/testing-deploy/.git' ]; then
+              if [ -d "~/apps/testing-deploy/.git" ]; then
                 echo "Exists"
                 cd ~/apps/testing-deploy && git pull
               else
