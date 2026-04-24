@@ -1,8 +1,8 @@
 name: Testing CI
 
 on:
-  push: 
-    branches: 
+  push:
+    branches:
       - main
 
 jobs:
@@ -20,4 +20,7 @@ jobs:
           chmod 600 ~/.ssh/ec2-key.pem
 
       - name: Connect & Test SSH connection
-        run: ssh -i ~/.ssh/ec2-key.pem -o StrictHostKeyChecking=no ${{secrets.EC2_USER}}@${{secrets.EC2_HOST}} "echo 'Connection successful!'"
+        run: |
+          echo "Starting deploy"
+          ssh -i ~/.ssh/ec2-key.pem -o StrictHostKeyChecking=no ${{secrets.EC2_USER}}@${{secrets.EC2_HOST}} \
+          "cd ./apps/testing-deploy && git pull && npm ci && npm run build && (pm2 restart 'testing-deploy' || pm2 start npm --name 'testing-deploy' -- start)"
