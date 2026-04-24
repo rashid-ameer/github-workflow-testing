@@ -25,10 +25,10 @@ jobs:
           npm --version
 
       - name: Install dependencies
-        run: npm ci
+        run: npm run ci
 
       - name: Build project
-        run: npm build
+        run: npm run build
 
       - name: Run app
-        run: npm start
+        run: npm run start
