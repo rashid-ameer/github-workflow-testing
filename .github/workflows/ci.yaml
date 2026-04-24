@@ -13,22 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install nodejs
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24.15.0
-          
-
-      - name: Check node and npm version
+      - name: Setting SSH key
         run: |
-          node --version
-          npm --version
+          mkdir -p ~/.ssh
+          echo "${{secrets.EC2_KEY}}" > ~/.ssh/ec2-key.pem
+          chmod 600 ~/.ssh/ec2-key.pem
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build project
-        run: npm run build
-
-      - name: Run app
-        run: npm start
+      - name: Connect & Test SSH connection
+        run: ssh -i ~/ssh/ec2-key.pem -o StrictHostKeyChecking=no ${{secrets.EC2_USER}}@${{secrets.EC2_HOST}} "echo 'Connection successful!'"
