@@ -25,10 +25,10 @@ jobs:
               -o StrictHostKeyChecking=no \
               ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
               "
-              if [ -d './apps/testing-deploy/.git' ]; then
-                cd ./apps/testing-deploy && git pull
+              if [ -d '~/apps/testing-deploy/.git' ]; then
+                cd ~/apps/testing-deploy && git pull
               else
-                mkdir -p ./apps && git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rashid-ameer/github-workflow-testing.git ./apps/testing-deploy
+                mkdir -p ~/apps && git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/rashid-ameer/github-workflow-testing.git ~/apps/testing-deploy
               fi
-              cd ./apps/testing-deploy && npm ci && npm run build && (pm2 restart 'testing-deploy' || pm2 start npm --name 'testing-deploy' -- start)
+              cd ~/apps/testing-deploy && npm ci && npm run build && (pm2 restart 'testing-deploy' || pm2 start npm --name 'testing-deploy' -- start)
               "
