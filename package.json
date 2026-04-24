@@ -8,7 +8,16 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "node src/index.test.js"
+    "dev": "nodemon"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "typescript": "^6.0.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "dotenv": "^17.4.2",
+    "nodemon": "^3.1.14",
+    "tsx": "^4.21.0"
   }
 }
